@@ -19,8 +19,17 @@ public class Main {
         Lettore davide = new Lettore("Davide");
         Lettore simone = new Lettore("Simone");
 
-        //Istanziamento bibliotecario
+        /*
+        Istanziamento bibliotecario
+        Il bibliotecario può:
+            - Iniziare e chiudere prestiti
+            - Visualizzare il catalogo dei libri e la lista degli utenti
+            - Visualizzare, aggiungere o eliminare libri
+            - Visualizzare, aggiungere o eliminare utenti
+        */
         Bibliotecario bibliotecario = new Bibliotecario("Luca");
+
+        //Tutti gli utenti possono ricercare libri per titolo o autore e prendere in prestito libri
 
         //Registrazione utenti in biblioteca
         biblioteca.aggiungiUtente(bibliotecario);
@@ -46,9 +55,11 @@ public class Main {
 
         bibliotecario.prendiInPrestito(bookOP.getId());
 
-        //Il bibliotecario cerca il libro "Il grande Gatsby" e un libro di George Orwell
+        //Il bibliotecario cerca il libro "Il grande Gatsby"
         System.out.println(bibliotecario.ricercaLibro("Il grande Gatsby"));
-        System.out.println(bibliotecario.ricercaLibro("JanE AuSTen"));
+
+        //Davide cerca un libro di Jane Austen
+        System.out.println(davide.ricercaLibro("JanE AuSTen"));
 
         //Il bibliotecario chiude un prestito
         bibliotecario.chiudiPrestito(book1949.getId());

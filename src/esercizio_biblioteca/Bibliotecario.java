@@ -1,6 +1,6 @@
 package esercizio_biblioteca;
 
-public class Bibliotecario extends Utente {
+public class Bibliotecario extends Utente implements Gestibile, Ricercabile {
 
     public Bibliotecario(String nome) {
         super(nome);
@@ -41,6 +41,7 @@ public class Bibliotecario extends Utente {
         return prestiti.append("\n").toString();
     }
 
+    @Override
     public void aggiungiLibro(Libro libro) {
         Biblioteca biblioteca = getBiblioteca();
 
@@ -53,6 +54,7 @@ public class Bibliotecario extends Utente {
         biblioteca.aggiungiLibro(libro);
     }
 
+    @Override
     public void eliminaLibro(int idLibro) {
         Biblioteca biblioteca = getBiblioteca();
 
@@ -65,7 +67,8 @@ public class Bibliotecario extends Utente {
         biblioteca.eliminaLibro(idLibro);
     }
 
-    public String ricercaLibro(String chiave) {
+    @Override
+    public String visualizzaLibro(int idLibro) {
         Biblioteca biblioteca = getBiblioteca();
 
         //Controlla se l'utente è registrato in biblioteca
@@ -73,10 +76,11 @@ public class Bibliotecario extends Utente {
             return "L'utente non è registrato in nessuna biblioteca";
         }
 
-        return biblioteca.ricercaLibro(chiave);
+        return biblioteca.visualizzaLibro(idLibro);
     }
 
-    public void iniziaPrestito(int idLibro, int numeroTessera) {
+    @Override
+    public void aggiungiUtente(Utente utente) {
         Biblioteca biblioteca = getBiblioteca();
 
         //Controlla se l'utente è registrato in biblioteca
@@ -85,9 +89,48 @@ public class Bibliotecario extends Utente {
             return;
         }
 
-        biblioteca.iniziaPrestito(idLibro, numeroTessera, 0);
+        biblioteca.aggiungiUtente(utente);
     }
 
+    @Override
+    public void eliminaUtente(int numeroTessera) {
+        Biblioteca biblioteca = getBiblioteca();
+
+        //Controlla se l'utente è registrato in biblioteca
+        if (biblioteca == null) {
+            System.out.println("L'utente non è registrato in nessuna biblioteca");
+            return;
+        }
+
+        biblioteca.eliminaUtente(numeroTessera);
+    }
+
+    @Override
+    public String visualizzaUtente(int numeroTessera) {
+        Biblioteca biblioteca = getBiblioteca();
+
+        //Controlla se l'utente è registrato in biblioteca
+        if (biblioteca == null) {
+            return "L'utente non è registrato in nessuna biblioteca";
+        }
+
+        return biblioteca.visualizzaUtente(numeroTessera);
+    }
+
+    @Override
+    public void iniziaPrestito(int idLibro, int numeroTessera, int prolungamentoPrestito) {
+        Biblioteca biblioteca = getBiblioteca();
+
+        //Controlla se l'utente è registrato in biblioteca
+        if (biblioteca == null) {
+            System.out.println("L'utente non è registrato in nessuna biblioteca");
+            return;
+        }
+
+        biblioteca.iniziaPrestito(idLibro, numeroTessera, prolungamentoPrestito);
+    }
+
+    @Override
     public void chiudiPrestito(int idLibro) {
         Biblioteca biblioteca = getBiblioteca();
 

@@ -1,6 +1,6 @@
 package esercizio_biblioteca;
 
-public abstract class Utente {
+public abstract class Utente implements Ricercabile {
 
     private static int numeroUtenti;
 
@@ -37,4 +37,16 @@ public abstract class Utente {
     }
 
     protected abstract void prendiInPrestito(int idLibro);
+
+    @Override
+    public String ricercaLibro(String chiave) {
+        Biblioteca biblioteca = getBiblioteca();
+
+        //Controlla se l'utente è registrato in biblioteca
+        if (biblioteca == null) {
+            return "L'utente non è registrato in nessuna biblioteca";
+        }
+
+        return biblioteca.ricercaLibro(chiave);
+    }
 }
